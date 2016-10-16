@@ -1,0 +1,25 @@
+<html>
+<head>
+  <script src="mimic.js"></script>
+  <script src="OpenSubtitlesClient.js"></script>
+  <script>
+
+    // Do a search on http://opensubtitles.org/
+    // only works as a local file or where CORS doesn't apply.
+    var ost = new OpenSubtitlesClient();
+    var results = ost.search('Jerry Maguire', 'eng');
+    for (var c=0,len=results.length;c<len;c++)
+    {
+      var subtitle = results[c];
+      console.log(subtitle.MovieName + ' (' + subtitle.MovieYear + ') - ' + subtitle.SubLastTS + ' - ' + subtitle.SubRating);
+      console.log('URL: ' + subtitle.SubDownloadLink);
+      console.log(subtitle);
+    }
+
+  </script>
+</head>
+<body>
+ <h1>Searching for Jerry Maguire</h1>
+ <p>Open the console to see search results...</p>
+</body>
+</html>

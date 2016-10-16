@@ -1,0 +1,40 @@
+<ion-view view-title="Your subtitles">
+  <ion-content>
+
+
+
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in subtitles" type="item-text-wrap" href="#/tab/subtitles/{{chat.id}}" style="  background-color:#000;">
+        <img ng-src="./img/play.png">
+        <h2 class="subtitle-title">{{chat.name}}</h2>
+        <p>{{chat.lastText}}</p>
+        <i class="icon ion-navicon-round icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+
+
+      <div class='bottom_bar'>
+        <div class="image_container">
+          <a href="#/tab/account">
+          <img class='search' id="search-image" src="./img/search.png">
+          </a>
+        </div>
+        
+        <div class="language">
+          <img class="language_image" src="./img/language.png">
+        </div>
+        <div class="settings">
+          
+            <img class="settings_image" src="./img/settings.png">
+          
+        </div>
+      </div>
+
+    </ion-list>
+    
+  </ion-content>
+</ion-view>

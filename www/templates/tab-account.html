@@ -1,9 +1,24 @@
-<ion-view view-title="Account">
+<ion-view view-title="Find subtitles">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
+    
+
+        <div class="image_container_main">
+          <a href="#/tab/account">
+          <img class='search' id="search-image-main" src="./img/search.png">
+          </a>
+        </div>
+       
+       <div id="search-main-text">
+       	<form ng-submit="goNext()" method="get">
+       		<input type="text" placeholder="search for a movie">
+       		<input type="submit" style="position: absolute; left: -9999px"/>
+       	</form>
+       	<hr id="search-main">
+       </div>
+      
+
+
     </ion-list>
   </ion-content>
 </ion-view>

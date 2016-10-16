@@ -1,1 +1,86 @@
 /* Empty. Add your own CSS if you like */
+
+ion-content {
+	background-color:  #000000;
+}
+
+#home-image {
+	/*position: absolute;*/
+	display: block;
+	margin: auto;
+}
+
+#search-image {
+	/*position: absolute;*/
+	/*float: left;*/
+	/*display: block;*/
+	/*margin: auto;*/
+	margin-top: -18px;
+}
+
+#search-image-main {
+	margin-top:150px;
+	height: auto;
+	width: 70px;
+}
+
+.container {
+	margin-top: 20%;
+}
+
+.subtitle-title {
+	color: #fff;
+}
+
+.item .item-content {
+  background-color: transparent !important;
+}
+
+.bottom_bar {
+	margin-top:10%;
+	background-color: #3c3c3c;
+	height: 80px;
+}
+
+.image_container {
+	margin: auto;
+	width: 40px;
+}
+
+.image_container_main {
+	margin: auto;
+	width: 70px;
+}
+
+.language_image {
+	margin-top: -18px;
+	margin-left: 10px;
+	float:left;
+}
+
+.image_container {
+	margin: auto;
+	width: 40px;
+}
+
+.settings_image {
+	margin-top: -18px;
+	margin-right: 20px;
+	float:right;
+}
+
+#search-main {
+	margin-top: 15px;
+	width: 250px;
+	text-align:center;
+}
+
+input {
+	background-color: #000;
+	width: 100%;
+	text-align: center;
+	margin: auto;	
+	color: white !important;
+	margin-top: 20px;	
+	font-size: 18px !important;
+}

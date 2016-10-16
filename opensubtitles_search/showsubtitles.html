@@ -1,0 +1,131 @@
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="http://underscorejs.org/underscore-min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pako/1.0.3/pako.min.js"></script>
+  <script src="srtparser.js"></script>
+  <script>
+    $(function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', "http://dl.opensubtitles.org/en/download/src-api/vrf-19dc0c5b/sid-4q45qnhl9jil3rb0m3r8jh4jm6/filead/1953794462.gz", true);
+      xhr.responseType = 'arraybuffer';
+      xhr.onload = function(e) {
+        if (this.status == 200) {
+          var buffer = $(document.createDocumentFragment());
+          var data=pako.inflate(new Uint8Array(this.response),{to:'string'});
+          var srt = new parser.fromSrt(data);
+          _.each(srt, function(sub, idx) {
+            if (idx < 10) console.log(sub);
+            $('<div/>').attr('id', sub.id).addClass('subtitle', sub.startTime + ' ' + sub.endTime).html(sub.text).appendTo(buffer);
+          });
+
+          $('.scroller').css('background', 'none');
+          buffer.appendTo('.scroller:first');
+          $('.buttons').show();
+        }
+      };
+      xhr.send(null);
+
+      var scroller = $('.scroller:first');
+
+      $('button.forward').click(function() {
+        scroller.scrollTop(scroller.scrollTop() + 320);
+      });
+      $('button.back').click(function() {
+        scroller.scrollTop(scroller.scrollTop() - 320);
+      });
+
+      $(document).keydown(function(e) {
+        if (e.which == 39)
+        {
+          $('button.forward').click();
+        }
+        if (e.which == 37)
+        {
+          $('button.back').click();
+        }
+      })
+
+    });
+  </script>
+  <style>
+    body {
+      text-align: center;
+      background-color: black;
+      color: #999;
+      font-family: "Open Sans";
+      font-size: 40pt;
+    }
+
+    h1 {
+      font-size: 40pt;
+    }
+
+    p {
+      font-size: 18pt;
+    }
+
+    .scroller {
+      height: 320px;
+      overflow: hidden;
+      background: url(gears.svg);
+      background-size: 150px 150px;
+      background-repeat: no-repeat;
+      background-position: bottom +20px right +20px;
+    }
+
+    .subtitle
+    {
+      box-sizing: border-box;
+      height: 320px;
+      padding: 50px 30px;
+      border-bottom: 1px solid #333;
+      overflow: hidden;
+    }
+
+    button {
+      margin-top: 50px;
+      background-color: transparent;
+      color: #999;
+      background-size: 100px 100px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 100px;
+      width: 100px;
+      border: none;
+      margin: 30px 10px;
+    }
+
+    button.back {
+      background-image: url("prev.svg");
+    }
+
+    button.forward {
+      background-image: url("next.svg");
+    }
+
+    button.pause {
+      background-image: url("pause.svg");
+    }
+
+    .buttons {
+      background: linear-gradient(to bottom, #333 0%, #111 100%);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="scroller">
+    <div class="subtitle">
+      <h1>Jerry Maguire (1996)</h1>
+      <p>02:18:12 - 0.0</p>
+    </div>
+  </div>
+  <div class="buttons" style="display: block;">
+    <button class="back"></button>
+    <button class="pause"></button>
+    <button class="forward"></button>
+  </div>
+</body>
+</html>
